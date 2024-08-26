@@ -1,0 +1,62 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create users table
+      author: Elnur Hasanov
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: firstname
+                  type: varchar
+                  remarks: user's first name
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lastname
+                  type: varchar
+                  remarks: user's last name
+                  constraints:
+                    nullable: false
+              - column:
+                  name: birthplace
+                  type: varchar
+                  remarks: user's birthplace
+                  constraints:
+                    nullable: false
+              - column:
+                  name: birth_year
+                  type: date
+                  remarks: user's date of birth
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_active
+                  type: boolean
+                  remarks: indicates if the user is active
+                  defaultValue: true
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: timestamp
+                  defaultValue: now()
+                  remarks: timestamp of when the record was created
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: timestamp
+                  defaultValue: now()
+                  remarks: timestamp of when the record was last updated
+                  constraints:
+                    nullable: false
+
+            remarks: Table to store user information
