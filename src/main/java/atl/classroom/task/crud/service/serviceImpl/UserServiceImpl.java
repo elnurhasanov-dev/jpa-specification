@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id).orElseThrow(
                 () -> {
                     log.error("ActionLog.getUser.error id:{}", id);
-                    throw new RuntimeException("USER_NOT_FOUND");
+                    return new RuntimeException("USER_NOT_FOUND");
                 }
         );
     }

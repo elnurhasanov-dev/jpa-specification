@@ -30,4 +30,5 @@ public class PredicateUtil {
     public Predicate[] build() {
         return predicates.toArray(new Predicate[0]);
     }
+
 }
