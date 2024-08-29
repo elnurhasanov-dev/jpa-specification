@@ -1,7 +1,6 @@
 package atl.classroom.task.crud.scheduler;
 
 import atl.classroom.task.crud.service.TestSchedulerService;
-import jakarta.persistence.Column;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
