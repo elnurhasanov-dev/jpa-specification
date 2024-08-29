@@ -1,12 +1,8 @@
 package atl.classroom.task.crud.mapper;
 
-import atl.classroom.task.crud.dao.entity.CardEntity;
 import atl.classroom.task.crud.dao.entity.UserEntity;
-import atl.classroom.task.crud.model.request.CreateCardRequest;
 import atl.classroom.task.crud.model.request.CreateUserRequest;
-import atl.classroom.task.crud.model.request.UpdateCardRequest;
 import atl.classroom.task.crud.model.request.UpdateUserRequest;
-import atl.classroom.task.crud.model.response.CardResponse;
 import atl.classroom.task.crud.model.response.UserResponse;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;

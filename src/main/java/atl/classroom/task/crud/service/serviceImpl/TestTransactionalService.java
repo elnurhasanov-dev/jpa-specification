@@ -7,13 +7,14 @@ import atl.classroom.task.crud.dao.repository.UserRepository;
 import atl.classroom.task.crud.model.enums.CardStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 
 @Service
 @RequiredArgsConstructor
-public class TransactionalService {
+public class TestTransactionalService {
     private final UserRepository userRepository;
 
     private final CardRepository cardRepository;
@@ -68,14 +69,29 @@ public class TransactionalService {
 
     /**
      * TEST 5
-     Normally, a transaction will roll back if a RuntimeException or its subclass is thrown.
-     However, by specifying noRollbackFor = RuntimeException.class, you are instructing Spring to not roll back
-     the transaction when a RuntimeException occurs.
+     * Normally, a transaction will roll back if a RuntimeException or its subclass is thrown.
+     * However, by specifying noRollbackFor = RuntimeException.class, you are instructing Spring to not roll back
+     * the transaction when a RuntimeException occurs.
      */
     @Transactional(noRollbackFor = RuntimeException.class)
     public void test5() {
         saveData();
         throwCustomRuntimeException();
+    }
+
+    /**
+     * TEST 6
+     */
+    @Transactional()
+    public void test6() {
+        // managed
+        var card = cardRepository.findById(1l).get();
+        card.setCardHolder("John Doe");
+
+        // new
+        var card2 = new CardEntity(null, "4169131331314565", "123", "MIKE ANDERS",
+                LocalDate.now(), CardStatus.ACTIVE, null, null);
+        card2.setCardHolder("Jane Doe");
     }
 
     private void throwCustomRuntimeException() {
