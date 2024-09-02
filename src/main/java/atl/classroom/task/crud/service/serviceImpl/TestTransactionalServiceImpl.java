@@ -7,14 +7,13 @@ import atl.classroom.task.crud.dao.repository.UserRepository;
 import atl.classroom.task.crud.model.enums.CardStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 
 @Service
 @RequiredArgsConstructor
-public class TestTransactionalService {
+public class TestTransactionalServiceImpl {
     private final UserRepository userRepository;
 
     private final CardRepository cardRepository;
@@ -38,12 +37,12 @@ public class TestTransactionalService {
     @Transactional
     public void test2() throws Exception {
         userRepository.save(new UserEntity(null, "Mike", "Anders",
-                "New York", LocalDate.parse("2002-05-16"), true, null, null));
+                "New York", LocalDate.parse("2002-05-16"), true, null, null,null));
 
         throwCustomCheckedException();
 
         cardRepository.save(new CardEntity(null, "4169131331314565", "123", "MIKE ANDERS",
-                LocalDate.now(), CardStatus.ACTIVE, null, null));
+                LocalDate.now(), CardStatus.ACTIVE, null, null,null));
 
     }
 
@@ -90,7 +89,7 @@ public class TestTransactionalService {
 
         // new
         var card2 = new CardEntity(null, "4169131331314565", "123", "MIKE ANDERS",
-                LocalDate.now(), CardStatus.ACTIVE, null, null);
+                LocalDate.now(), CardStatus.ACTIVE, null, null, null);
         card2.setCardHolder("Jane Doe");
     }
 
@@ -104,9 +103,9 @@ public class TestTransactionalService {
 
     private void saveData() {
         userRepository.save(new UserEntity(null, "Mike", "Anders",
-                "New York", LocalDate.parse("2002-05-16"), true, null, null));
+                "New York", LocalDate.parse("2002-05-16"), true, null, null, null));
 
         cardRepository.save(new CardEntity(null, "4169131331314565", "123", "MIKE ANDERS",
-                LocalDate.now(), CardStatus.ACTIVE, null, null));
+                LocalDate.now(), CardStatus.ACTIVE, null, null, null));
     }
 }

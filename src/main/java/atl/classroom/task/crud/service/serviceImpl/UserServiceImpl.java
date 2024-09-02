@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static atl.classroom.task.crud.mapper.CardMapper.CARD_MAPPER;
 import static atl.classroom.task.crud.mapper.UserMapper.USER_MAPPER;
 
 
@@ -27,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponse getUserById(Long id) {
-        var user = fetchUserIfExist(id);
+        UserEntity user = fetchUserIfExist(id);
         return USER_MAPPER.buildUserResponse(user);
     }
 

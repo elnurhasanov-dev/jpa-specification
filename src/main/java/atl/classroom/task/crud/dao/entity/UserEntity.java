@@ -1,22 +1,23 @@
 package atl.classroom.task.crud.dao.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
+import static jakarta.persistence.CascadeType.ALL;
+import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Getter
 @Setter
 @ToString
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users")
@@ -40,4 +41,11 @@ public class UserEntity {
 
     @UpdateTimestamp
     public LocalDateTime updated_at;
+
+    @OneToMany(
+            mappedBy = "user",
+            cascade = ALL,
+            fetch = LAZY
+    )
+    public List<CardEntity> cards;
 }

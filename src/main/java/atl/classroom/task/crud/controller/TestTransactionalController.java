@@ -1,6 +1,6 @@
 package atl.classroom.task.crud.controller;
 
-import atl.classroom.task.crud.service.serviceImpl.TestTransactionalService;
+import atl.classroom.task.crud.service.serviceImpl.TestTransactionalServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("v1/transaction")
 @RequiredArgsConstructor
 public class TestTransactionalController {
-    private final TestTransactionalService transactionalService;
+    private final TestTransactionalServiceImpl transactionalService;
 
     @GetMapping("/test")
     public void test() {

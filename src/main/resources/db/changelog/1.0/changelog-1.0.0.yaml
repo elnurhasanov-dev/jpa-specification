@@ -1,10 +1,10 @@
 databaseChangeLog:
   - changeSet:
-      id: Create cards table
+      id: Create users table
       author: Elnur Hasanov
       changes:
         - createTable:
-            tableName: cards
+            tableName: users
             columns:
               - column:
                   name: id
@@ -14,44 +14,49 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: pan
-                  type: varchar(16)
-                  remarks: number of cards
+                  name: firstname
+                  type: varchar
+                  remarks: user's first name
                   constraints:
                     nullable: false
               - column:
-                  name: expiration_date
+                  name: lastname
+                  type: varchar
+                  remarks: user's last name
+                  constraints:
+                    nullable: false
+              - column:
+                  name: birthplace
+                  type: varchar
+                  remarks: user's birthplace
+                  constraints:
+                    nullable: false
+              - column:
+                  name: birth_year
                   type: date
-                  remarks: expiration date of cards
+                  remarks: user's date of birth
                   constraints:
                     nullable: false
               - column:
-                  name: cvv
-                  type: varchar(3)
-                  remarks: cvv of cards
+                  name: is_active
+                  type: boolean
+                  remarks: indicates if the user is active
+                  defaultValue: true
                   constraints:
                     nullable: false
-              - column:
-                  name: card_holder
-                  type: varchar(256)
-                  remarks: cardholder name
-              - column:
-                  name: status
-                  type: varchar(16)
-                  remarks: status of cart
               - column:
                   name: created_at
                   type: timestamp
                   defaultValue: now()
-                  remarks: when the record created
+                  remarks: timestamp of when the record was created
                   constraints:
                     nullable: false
               - column:
                   name: updated_at
                   type: timestamp
                   defaultValue: now()
-                  remarks: when the record updated
+                  remarks: timestamp of when the record was last updated
                   constraints:
                     nullable: false
 
-            remarks: Table to store information about users cards
+            remarks: Table to store user information
