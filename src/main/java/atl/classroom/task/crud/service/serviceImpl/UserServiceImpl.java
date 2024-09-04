@@ -6,6 +6,7 @@ import atl.classroom.task.crud.model.criteria.PageCriteria;
 import atl.classroom.task.crud.model.criteria.UserCriteria;
 import atl.classroom.task.crud.model.request.CreateUserRequest;
 import atl.classroom.task.crud.model.request.UpdateUserRequest;
+import atl.classroom.task.crud.model.response.UserAllInfosResponse;
 import atl.classroom.task.crud.model.response.UserResponse;
 import atl.classroom.task.crud.service.UserService;
 import atl.classroom.task.crud.service.specification.UserSpecification;
@@ -16,7 +17,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static atl.classroom.task.crud.mapper.CardMapper.CARD_MAPPER;
 import static atl.classroom.task.crud.mapper.UserMapper.USER_MAPPER;
 
 
@@ -41,9 +41,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<UserAllInfosResponse> getUserInfosResponse() {
+//        var users = userRepository.findAll();
+        var users = userRepository.findAllUsersInfo();
+        return users.stream().map(USER_MAPPER::buildUserAllUserResponse).toList();
+    }
+
+    @Override
     public void createUser(CreateUserRequest request) {
         userRepository.save(USER_MAPPER.buildUserEntity(request));
-
     }
 
     @Override

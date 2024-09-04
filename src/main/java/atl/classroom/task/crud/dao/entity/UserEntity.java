@@ -1,5 +1,7 @@
 package atl.classroom.task.crud.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -47,5 +49,6 @@ public class UserEntity {
             cascade = ALL,
             fetch = LAZY
     )
+    @JsonBackReference
     public List<CardEntity> cards;
 }

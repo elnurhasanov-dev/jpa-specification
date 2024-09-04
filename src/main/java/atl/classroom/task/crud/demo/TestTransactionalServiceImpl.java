@@ -1,4 +1,4 @@
-package atl.classroom.task.crud.service.serviceImpl;
+package atl.classroom.task.crud.demo;
 
 import atl.classroom.task.crud.dao.entity.CardEntity;
 import atl.classroom.task.crud.dao.entity.UserEntity;

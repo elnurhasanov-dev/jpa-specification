@@ -1,6 +1,7 @@
 package atl.classroom.task.crud.service.serviceImpl;
 
 import atl.classroom.task.crud.dao.entity.CardEntity;
+import atl.classroom.task.crud.dao.entity.UserEntity;
 import atl.classroom.task.crud.dao.repository.CardRepository;
 import atl.classroom.task.crud.model.request.CreateCardRequest;
 import atl.classroom.task.crud.model.request.UpdateCardRequest;
@@ -27,7 +28,9 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public void createCard(CreateCardRequest request) {
-        cardRepository.save(CARD_MAPPER.buildCardEntity(request));
+        var card = CARD_MAPPER.buildCardEntity(request);
+        card.setUser(UserEntity.builder().id(request.getCards()).build());
+        cardRepository.save(card);
     }
 
     @Override

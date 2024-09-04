@@ -15,6 +15,7 @@ public interface CardMapper {
     CardResponse buildCardResponse(CardEntity cardEntity);
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "user", ignore = true)
     @Mapping(target = "status", defaultValue = "ACTIVE")
     CardEntity buildCardEntity(CreateCardRequest cardResponse);
 

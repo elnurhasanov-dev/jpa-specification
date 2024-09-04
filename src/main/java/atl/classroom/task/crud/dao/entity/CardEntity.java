@@ -20,6 +20,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name = "cards")
 public class CardEntity {
     @Id

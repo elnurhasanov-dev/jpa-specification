@@ -4,6 +4,7 @@ import atl.classroom.task.crud.model.criteria.PageCriteria;
 import atl.classroom.task.crud.model.criteria.UserCriteria;
 import atl.classroom.task.crud.model.request.CreateUserRequest;
 import atl.classroom.task.crud.model.request.UpdateUserRequest;
+import atl.classroom.task.crud.model.response.UserAllInfosResponse;
 import atl.classroom.task.crud.model.response.UserResponse;
 import atl.classroom.task.crud.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,11 @@ import static org.springframework.http.HttpStatus.*;
 @Slf4j
 public class UserController {
     private final UserService userService;
+
+    @GetMapping("/all")
+    public ResponseEntity<List<UserAllInfosResponse>> getAllUsers() {
+        return ResponseEntity.status(OK).body(userService.getUserInfosResponse());
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<UserResponse> getUserById(@PathVariable Long id) {

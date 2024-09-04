@@ -4,11 +4,15 @@ import atl.classroom.task.crud.model.criteria.PageCriteria;
 import atl.classroom.task.crud.model.criteria.UserCriteria;
 import atl.classroom.task.crud.model.request.CreateUserRequest;
 import atl.classroom.task.crud.model.request.UpdateUserRequest;
+import atl.classroom.task.crud.model.response.UserAllInfosResponse;
 import atl.classroom.task.crud.model.response.UserResponse;
 
 import java.util.List;
 
 public interface UserService {
+
+    List<UserAllInfosResponse> getUserInfosResponse();
+
     void createUser(CreateUserRequest request);
 
     void deleteUser(Long id);

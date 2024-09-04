@@ -3,6 +3,7 @@ package atl.classroom.task.crud.mapper;
 import atl.classroom.task.crud.dao.entity.UserEntity;
 import atl.classroom.task.crud.model.request.CreateUserRequest;
 import atl.classroom.task.crud.model.request.UpdateUserRequest;
+import atl.classroom.task.crud.model.response.UserAllInfosResponse;
 import atl.classroom.task.crud.model.response.UserResponse;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
@@ -11,6 +12,8 @@ import org.mapstruct.factory.Mappers;
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface UserMapper {
     UserMapper USER_MAPPER = Mappers.getMapper(UserMapper.class);
+
+    UserAllInfosResponse buildUserAllUserResponse(UserEntity userEntity);
 
     UserResponse buildUserResponse(UserEntity userEntity);
 

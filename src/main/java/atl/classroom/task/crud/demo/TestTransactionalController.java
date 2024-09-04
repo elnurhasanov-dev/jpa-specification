@@ -1,6 +1,5 @@
-package atl.classroom.task.crud.controller;
+package atl.classroom.task.crud.demo;
 
-import atl.classroom.task.crud.service.serviceImpl.TestTransactionalServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

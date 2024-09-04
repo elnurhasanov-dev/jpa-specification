@@ -1,5 +1,6 @@
 package atl.classroom.task.crud.model.request;
 
+import atl.classroom.task.crud.dao.entity.UserEntity;
 import atl.classroom.task.crud.model.enums.CardStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,4 +17,5 @@ public class CreateCardRequest {
     private String cardHolder;
     private LocalDate expirationDate;
     private CardStatus status;
+    private Long cards;
 }
