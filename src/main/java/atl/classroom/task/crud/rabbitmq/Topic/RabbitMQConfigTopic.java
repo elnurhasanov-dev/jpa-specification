@@ -10,50 +10,70 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitMQConfigTopic {
+    // Exchange
+    public static final String X_PICTURE = "x.picture";
 
-    public static final String QUEUE_NAME_CUSTOMER = "myTopicCustomersQueue";
-    public static final String QUEUE_NAME_PERSONNEL = "myTopicPersonnelicsQueue";
-    public static final String QUEUE_NAME_INTERNATIONAL = "myTopicInternationalQueue";
+    // Queues
+    public static final String QUEUE_PICTURE_FILTER = "q.picture.filter";
+    public static final String QUEUE_PICTURE_IMAGE = "q.picture.image";
+    public static final String QUEUE_PICTURE_LOG = "q.picture.log";
+    public static final String QUEUE_PICTURE_VECTOR = "q.picture.vector";
 
-    public static final String EXCHANGE_NAME_TOPIC = "myTopicExchange";
-
-    public static final String ROUTING_KEY_CUSTOMER = "order.logs.personnel.*";
-    public static final String ROUTING_KEY_PERSONNEL = "order.logs.personnel.electronics";
-    public static final String ROUTING_KEY_INTERNATIONAL = "order.logs.international.electronics";
-
-    @Bean
-    public Queue customerQueue() {
-        return new Queue(QUEUE_NAME_CUSTOMER, true); // durable queue
-    }
-
-    @Bean
-    public Queue personnelQueue() {
-        return new Queue(QUEUE_NAME_PERSONNEL, true); // durable queue
-    }
-
-    @Bean
-    public Queue internationalQueue() {
-        return new Queue(QUEUE_NAME_INTERNATIONAL, true); // durable queue
-    }
+    // Routing Keys
+    public static final String ROUTING_KEY_PNG = "*.*.png";
+    public static final String ROUTING_KEY_JPG = "#.jpg";
+    public static final String ROUTING_KEY_SVG = "*.*.svg";
+    public static final String ROUTING_KEY_MOBILE = "mobile.#";
+    public static final String ROUTING_KEY_LARGE_SVG = "*.large.svg";
 
     @Bean
     public TopicExchange exchangeTopic() {
-        return new TopicExchange(EXCHANGE_NAME_TOPIC);
+        return new TopicExchange(X_PICTURE);
     }
 
     @Bean
-    public Binding customerBinding(@Qualifier("customerQueue") Queue customerQueue, TopicExchange topicExchange) {
-        return BindingBuilder.bind(customerQueue).to(topicExchange).with(ROUTING_KEY_CUSTOMER);
+    public Queue filterQueue() {
+        return new Queue(QUEUE_PICTURE_FILTER, true); // durable queue
     }
 
     @Bean
-    public Binding personnelBinding(@Qualifier("personnelQueue") Queue personnelQueue, TopicExchange topicExchange) {
-        return BindingBuilder.bind(personnelQueue).to(topicExchange).with(ROUTING_KEY_PERSONNEL);
+    public Queue imageQueue() {
+        return new Queue(QUEUE_PICTURE_IMAGE, true); // durable queue
     }
 
     @Bean
-    public Binding internationalBinding(@Qualifier("internationalQueue") Queue internationalQueue, TopicExchange topicExchange) {
-        return BindingBuilder.bind(internationalQueue).to(topicExchange).with(ROUTING_KEY_INTERNATIONAL);
+    public Queue logQueue() {
+        return new Queue(QUEUE_PICTURE_LOG, true); // durable queue
+    }
+
+    @Bean
+    public Queue vectorQueue() {
+        return new Queue(QUEUE_PICTURE_VECTOR, true);
+    }
+
+    @Bean
+    public Binding filterBinding(@Qualifier("filterQueue") Queue queue, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queue).to(topicExchange).with(ROUTING_KEY_MOBILE);
+    }
+
+    @Bean
+    public Binding imageBindingJpg(@Qualifier("imageQueue") Queue queue, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queue).to(topicExchange).with(ROUTING_KEY_JPG);
+    }
+
+    @Bean
+    public Binding imageBindingPng(@Qualifier("imageQueue") Queue queue, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queue).to(topicExchange).with(ROUTING_KEY_PNG);
+    }
+
+    @Bean
+    public Binding logBinding(@Qualifier("logQueue") Queue queue, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queue).to(topicExchange).with(ROUTING_KEY_LARGE_SVG);
+    }
+
+    @Bean
+    public Binding vectorBinding(@Qualifier("logQueue") Queue queue, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queue).to(topicExchange).with(ROUTING_KEY_SVG);
     }
 
 }
