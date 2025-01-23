@@ -1,10 +1,6 @@
-package atl.classroom.task.crud.rabbitmq;
+package atl.classroom.task.crud.rabbitmq.Topic;
 
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
-
-import static atl.classroom.task.crud.rabbitmq.RabbitMQConfigTopic.QUEUE_NAME_CUSTOMER;
-import static atl.classroom.task.crud.rabbitmq.RabbitMQConfigTopic.ROUTING_KEY_PERSONNEL;
 
 @Component
 public class RabbitMQConsumerTopic {

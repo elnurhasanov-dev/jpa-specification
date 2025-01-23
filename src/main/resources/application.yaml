@@ -30,7 +30,22 @@ spring:
     port: 5672
     username: guest
     password: guest
-    virtual-host: /
+    listener:
+      simple:
+        retry:
+          enabled: true       # Enable retry logic
+          max-attempts: 5     # Maximum number of retry attempts
+          initial-interval: 3s  # Initial retry interval in milliseconds
+          multiplier: 1     # Multiplier to increase retry interval
+          max-interval: 5s  # Maximum retry interval in milliseconds
+        missing-queues-fatal: false
+    #        acknowledge-mode: auto # Auto acknowledgment of messages
+
+#Rabbit
+rabbitmq:
+  queue:
+    person: PERSON_Q
+    person-dlq: PERSON_DLQ
 
 # Port
 server:

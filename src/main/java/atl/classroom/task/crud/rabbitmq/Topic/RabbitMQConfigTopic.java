@@ -1,4 +1,4 @@
-package atl.classroom.task.crud.rabbitmq;
+package atl.classroom.task.crud.rabbitmq.Topic;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
