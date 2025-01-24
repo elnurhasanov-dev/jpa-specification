@@ -64,6 +64,6 @@ public class RabbitMQConfig {
     Binding personQBinding() {
         return BindingBuilder.bind(personQ())
                 .to(personDLQExchange())
-                .with(personDLQKey);
+                .with(personQKey);
     }
 }
