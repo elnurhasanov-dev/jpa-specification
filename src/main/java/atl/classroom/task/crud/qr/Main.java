@@ -4,7 +4,6 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
-import jakarta.annotation.PostConstruct;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 
@@ -17,9 +16,9 @@ import java.util.Base64;
 @Component
 public class Main {
 
-    @PostConstruct
+    //    @PostConstruct
     @SneakyThrows
-    public void generateQr()  {
+    public void generateQr() {
         String text = "https://www.linkedin.com/in/hasanovelnur/"; // Set the QR code URL
 
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
