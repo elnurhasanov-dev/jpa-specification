@@ -55,6 +55,10 @@ dependencies {
     // RabbitMQ
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
 
+    // QR
+    implementation 'com.google.zxing:core:3.5.3'
+    implementation 'com.google.zxing:javase:3.3.0'
+
 }
 
 tasks.named('test') {

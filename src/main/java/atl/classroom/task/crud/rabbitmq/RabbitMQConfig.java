@@ -66,4 +66,12 @@ public class RabbitMQConfig {
                 .to(personDLQExchange())
                 .with(personQKey);
     }
+
+    @Bean
+    public Queue mirroredQueue() {
+        return QueueBuilder.durable("my_mirrored_queue")
+                .withArgument("x-ha-policy", "exactly") // Mirroring aktiv edilir
+                .withArgument("x-ha-params", 3) // Yalnız 3 node-da saxlanacaq
+                .build();
+    }
 }
